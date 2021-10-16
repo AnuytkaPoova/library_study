@@ -5,20 +5,13 @@ class MainPresenter (private  val view: IMainView) {
     private val model = CounterModel()
 
     fun counterClick(type: CounterType) {
-        when (type) {
-            CounterType.FIRST -> {
-                val nextValue = model.next(0)
-                view.setButtonText(0, nextValue.toString())
-            }
-            CounterType.SECOND -> {
-                val nextValue = model.next(1)
-                view.setButtonText(1, nextValue.toString())
-            }
-            CounterType.THIRD -> {
-                val nextValue = model.next(2)
-                view.setButtonText(2, nextValue.toString())
-            }
+        val  nextValue = when (type) {
+            CounterType.FIRST ->  model.next(0)
+            CounterType.SECOND ->  model.next(1)
+            CounterType.THIRD ->  model.next(2)
+
         }
+        view.setButtonText(type, nextValue.toString())
     }
 }
 

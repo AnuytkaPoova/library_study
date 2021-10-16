@@ -1,5 +1,5 @@
 package com.a_ches.buttoncounterapp
 
 interface IMainView {
-    fun setButtonText(index: Int, text: String)
+    fun setButtonText(type: CounterType, text: String)
 }
