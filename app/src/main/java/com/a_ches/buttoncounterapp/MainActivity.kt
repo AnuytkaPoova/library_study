@@ -3,34 +3,35 @@ package com.a_ches.buttoncounterapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.a_ches.buttoncounterapp.databinding.ActivityMainBinding
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
 class MainActivity : MvpAppCompatActivity(), IMainView {
 
-    private lateinit var vb: ActivityMainBinding
-    private val presenter by moxyPresenter {MainPresenter(CounterModel())}
+
+    private val presenter by moxyPresenter {MainPresenter(GithubUsersRepo())}
+    private var adapter: UserRVAdapter? = null
+    private  var vb: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         vb = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(vb.root)
-        vb.btnCounter1.setOnClickListener {presenter.counterOneClick()}
-        vb.btnCounter2.setOnClickListener {presenter.counterTwoClick()}
-        vb.btnCounter3.setOnClickListener {presenter.counterTreeClick()}
+        setContentView(vb?.root)
+
     }
 
-    override fun setButtonOneText(text: String) {
-        vb.btnCounter1.text = text
+    override fun init() {
+        vb?.rvUsers?.layoutManager = LinearLayoutManager(this)
+        adapter = UserRVAdapter(presenter.usersListPresenter)
+        vb?.rvUsers?.adapter = adapter
     }
 
-    override fun setButtonTwoText(text: String) {
-        vb.btnCounter2.text = text
+    override fun updateList() {
+        adapter?.notifyDataSetChanged()
     }
 
-    override fun setButtonThreeText(text: String) {
-        vb.btnCounter3.text = text
-    }
+
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,45 +9,14 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text_counter_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/counter_one" />
-    <Button
-        android:id="@+id/btn_counter_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintTop_toBottomOf="@id/text_counter_1"
-        android:backgroundTint="@color/material_on_background_disabled"
-        style="@style/Theme.MaterialComponents.Light.Dialog.MinWidth.Bridge"/>
-    <TextView
-        android:id="@+id/text_counter_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/counter_two" />
-    <Button
-        android:id="@+id/btn_counter_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintTop_toBottomOf="@id/text_counter_2"
-        android:backgroundTint="@color/material_on_background_disabled"
-        style="@style/Theme.MaterialComponents.Light.Dialog.MinWidth.Bridge"/>
-    <TextView
-        android:id="@+id/text_counter_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/counter_three" />
-    <Button
-        android:id="@+id/btn_counter_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintTop_toBottomOf="@id/text_counter_3"
-        android:backgroundTint="@color/material_on_background_disabled"
-        style="@style/Theme.MaterialComponents.Light.Dialog.MinWidth.Bridge"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_users"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"/>
 
 
-</LinearLayout>
+
+</RelativeLayout>
