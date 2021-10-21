@@ -54,6 +54,7 @@ dependencies {
 
     //recycler
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation("com.github.terrakok:cicerone:6.6")
 
 
     testImplementation 'junit:junit:4.+'

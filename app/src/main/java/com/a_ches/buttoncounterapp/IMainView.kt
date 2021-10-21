@@ -8,15 +8,16 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface IMainView:MvpView {
-    fun init()
-    fun updateList()
+interface IMainView :MvpView{ //
+
+    //fun init()
+    //fun updateList()
 
 
 }
 
-@AddToEndSingle
-interface ListUserView : MvpView {
+@StateStrategyType(AddToEndSingleStrategy::class)
+interface UsersView : MvpView {
     fun init()
     fun updateList()
 }

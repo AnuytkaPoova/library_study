@@ -1,37 +1,47 @@
 package com.a_ches.buttoncounterapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.a_ches.buttoncounterapp.databinding.ActivityMainBinding
+import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
 class MainActivity : MvpAppCompatActivity(), IMainView {
 
+    val navigator = AppNavigator(this, R.id.container)
 
-    private val presenter by moxyPresenter {MainPresenter(GithubUsersRepo())}
-    private var adapter: UserRVAdapter? = null
+
+    private val presenter by moxyPresenter {MainPresenter(App.instance.router, AndroidScreens())}
+
     private  var vb: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         vb = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(vb?.root)
 
     }
 
-    override fun init() {
-        vb?.rvUsers?.layoutManager = LinearLayoutManager(this)
-        adapter = UserRVAdapter(presenter.usersListPresenter)
-        vb?.rvUsers?.adapter = adapter
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        App.instance.navigatorHolder.setNavigator(navigator)
     }
 
-    override fun updateList() {
-        adapter?.notifyDataSetChanged()
+    override fun onPause() {
+        super.onPause()
+        App.instance.navigatorHolder.removeNavigator()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportFragmentManager.fragments.forEach {
+            if (it is BackButtonListener && it.backPressed()) {
+                return
+            }
+        }
+        presenter.backClicked()
+    }
 
 
 }
