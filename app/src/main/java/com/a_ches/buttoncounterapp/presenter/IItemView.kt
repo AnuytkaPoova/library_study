@@ -1,4 +1,4 @@
-package com.a_ches.buttoncounterapp
+package com.a_ches.buttoncounterapp.presenter
 
 interface IItemView {
     //отвечает за хранение позиции в нашем списке

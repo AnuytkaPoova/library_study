@@ -1,4 +1,4 @@
-package com.a_ches.buttoncounterapp
+package com.a_ches.buttoncounterapp.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

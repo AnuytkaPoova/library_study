@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+
 }
 
 android {
@@ -46,15 +47,35 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 
+    implementation 'org.jsoup:jsoup:1.14.2'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     //moxy
-    implementation "com.github.moxy-community:moxy:2.2.0"
-    kapt "com.github.moxy-community:moxy-compiler:2.2.0"
-    implementation "com.github.moxy-community:moxy-ktx:2.1.2"
-    implementation "com.github.moxy-community:moxy-androidx:2.2.0"
+    implementation "com.github.moxy-community:moxy:2.2.2"
+    kapt "com.github.moxy-community:moxy-compiler:2.2.2"
+    implementation "com.github.moxy-community:moxy-ktx:2.2.2"
+    implementation "com.github.moxy-community:moxy-androidx:2.2.2"
 
     //recycler
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation("com.github.terrakok:cicerone:6.6")
+    implementation("com.github.terrakok:cicerone:7.1")
+    implementation 'com.google.android.material:material:1.4.0'
+
+
+
+    //UI
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 
 
     testImplementation 'junit:junit:4.+'

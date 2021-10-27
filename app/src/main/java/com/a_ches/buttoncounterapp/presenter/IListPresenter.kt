@@ -1,4 +1,4 @@
-package com.a_ches.buttoncounterapp
+package com.a_ches.buttoncounterapp.presenter
 
 interface IListPresenter<V : IItemView> {
     //наследуется от IItemView который твечает за хранение позиции в нашем списке (var pos)
