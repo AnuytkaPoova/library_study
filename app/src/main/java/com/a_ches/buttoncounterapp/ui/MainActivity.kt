@@ -39,7 +39,6 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         supportFragmentManager.fragments.forEach {
             if (it is IBackButtonListener && it.backPressed()) {
                 return

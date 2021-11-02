@@ -4,7 +4,7 @@ import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 class ScreenPresenter (private val router: Router, private val screens: IScreens) :
-    MvpPresenter<IMainView>() {
+MvpPresenter<IMainView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
