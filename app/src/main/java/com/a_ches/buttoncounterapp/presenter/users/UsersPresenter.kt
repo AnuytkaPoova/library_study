@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
 
-class UsersPresenter (
+class UsersPresenter(
     private val uiScheduler: Scheduler,
     private val usersRepo: IGithubUsersRepo,
     private val router: Router,
@@ -42,8 +42,8 @@ class UsersPresenter (
             disposable = d
         }
 
-        override fun onSuccess(t: List<GithubUser>) {
-            usersListPresenter.users.addAll(t)
+        override fun onSuccess(users: List<GithubUser>) {
+            usersListPresenter.users.addAll(users)
             viewState.updateList()
         }
 
@@ -77,7 +77,6 @@ class UsersPresenter (
         router.exit()
         return true
     }
-
 }
 
 

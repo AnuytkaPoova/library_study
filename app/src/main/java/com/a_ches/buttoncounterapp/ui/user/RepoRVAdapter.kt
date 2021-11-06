@@ -8,7 +8,7 @@ import com.a_ches.buttoncounterapp.model.githubusers.GithubRepository
 import com.a_ches.buttoncounterapp.presenter.user.IRepoItemView
 import com.a_ches.buttoncounterapp.presenter.user.IRepoListPresenter
 
-class RepoRVAdapter (
+class RepoRVAdapter(
     private val presenter: IRepoListPresenter
 ) : RecyclerView.Adapter<RepoRVAdapter.ViewHolder>() {
 

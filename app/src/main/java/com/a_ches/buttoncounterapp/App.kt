@@ -1,6 +1,7 @@
 package com.a_ches.buttoncounterapp
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
@@ -11,6 +12,7 @@ class App : Application() {
     companion object {
         lateinit var instance: App
     }
+
     private val cicerone: Cicerone<Router> by lazy {
         Cicerone.create()
     }
@@ -22,13 +24,7 @@ class App : Application() {
         super.onCreate()
         instance = this
         RxJavaPlugins.setErrorHandler {
-            if (it is UndeliverableException) {
-                Toast.makeText(
-                    applicationContext,
-                    "UndeliverableException: ${it.message}",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            Log.e("App", it.message ?: "")
         }
     }
 }

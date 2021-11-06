@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 
-class FileStorage (
+class FileStorage(
     private val context: Application
 ) : IFileStorage {
 

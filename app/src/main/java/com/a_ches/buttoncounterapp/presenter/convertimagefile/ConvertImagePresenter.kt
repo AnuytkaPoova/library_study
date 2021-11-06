@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
 
-class ConvertImagePresenter (
+class ConvertImagePresenter(
     private val fileStorage: IFileStorage,
     private val imageConvertor: IImageConvertor
 ) : MvpPresenter<IConvertImageView>() {

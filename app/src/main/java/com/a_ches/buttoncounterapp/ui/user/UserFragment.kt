@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.a_ches.buttoncounterapp.*
 import com.a_ches.buttoncounterapp.databinding.FragmentUserBinding
+import com.a_ches.buttoncounterapp.model.AndroidNetworkStatus
 import com.a_ches.buttoncounterapp.model.githubusers.ApiHolder
 import com.a_ches.buttoncounterapp.model.githubusers.GithubRepositoriesRepo
 import com.a_ches.buttoncounterapp.model.githubusers.GithubUser
+import com.a_ches.buttoncounterapp.model.room.AppDataBase
+import com.a_ches.buttoncounterapp.model.room.RoomGithubRepositoryCache
 import com.a_ches.buttoncounterapp.presenter.user.IUserView
 import com.a_ches.buttoncounterapp.presenter.user.UserPresenter
 import com.a_ches.buttoncounterapp.ui.AndroidScreens
@@ -26,7 +29,11 @@ class UserFragment : MvpAppCompatFragment(), IUserView, IBackButtonListener {
         UserPresenter(
             requireNotNull(arguments?.getParcelable(KEY_ARG_USER)),
             AndroidSchedulers.mainThread(),
-            GithubRepositoriesRepo(ApiHolder.api),
+            GithubRepositoriesRepo(
+                ApiHolder.api,
+                AndroidNetworkStatus(requireContext()),
+                RoomGithubRepositoryCache(AppDataBase.getDatabase(requireContext()))
+            ),
             App.instance.router,
             AndroidScreens()
         )

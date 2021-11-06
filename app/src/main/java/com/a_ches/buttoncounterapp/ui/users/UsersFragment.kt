@@ -1,6 +1,7 @@
 package com.a_ches.buttoncounterapp.ui.users
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.a_ches.buttoncounterapp.App
 import com.a_ches.buttoncounterapp.R
 import com.a_ches.buttoncounterapp.databinding.FragmentUsersBinding
+import com.a_ches.buttoncounterapp.model.AndroidNetworkStatus
 import com.a_ches.buttoncounterapp.model.githubusers.ApiHolder
 import com.a_ches.buttoncounterapp.model.githubusers.GithubUsersRepo
+import com.a_ches.buttoncounterapp.model.room.AppDataBase
+import com.a_ches.buttoncounterapp.model.room.RoomGithubUsersCache
 import com.a_ches.buttoncounterapp.presenter.users.IUsersView
 import com.a_ches.buttoncounterapp.presenter.users.UsersPresenter
 import com.a_ches.buttoncounterapp.ui.AndroidScreens
@@ -30,7 +34,11 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
     val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
             AndroidSchedulers.mainThread(),
-            GithubUsersRepo(ApiHolder.api),
+            GithubUsersRepo(
+                ApiHolder.api,
+                AndroidNetworkStatus(requireContext()),
+                RoomGithubUsersCache(AppDataBase.getDatabase(requireContext()))
+            ),
             App.instance.router,
             AndroidScreens()
         )
@@ -71,14 +79,13 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
     }
 
     override fun showMessageError(message: String) {
-        view?.let {
-            Snackbar
-                .make(it, message, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.reload) {
-                    presenter.loadData()
-                }
-                .show()
-        }
+        AlertDialog.Builder(context)
+            .setMessage(message)
+            .setPositiveButton(R.string.reload) { _, _ ->
+                presenter.loadData()
+            }
+            .create()
+            .show()
     }
 
     override fun showMessageOnComplete() {
