@@ -7,14 +7,18 @@ import com.a_ches.buttoncounterapp.presenter.IScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UserPresenter(
-    private val user: GithubUser,
-    private val uiScheduler: Scheduler,
-    private val repositoriesRepo: IGithubRepositoriesRepo,
-    private val router: Router,
-    private val screens: IScreens
-) : MvpPresenter<IUserView>() {
+class UserPresenter(private val user: GithubUser) : MvpPresenter<IUserView>() {
+
+    @Inject
+    lateinit var router: Router
+    @Inject
+    lateinit var screens: IScreens
+    @Inject
+    lateinit var uiScheduler: Scheduler
+    @Inject
+    lateinit var repositoriesRepo: IGithubRepositoriesRepo
 
     class RepoListPresenter : IRepoListPresenter {
 

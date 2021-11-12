@@ -3,7 +3,7 @@ package com.a_ches.buttoncounterapp.model.room
 import com.a_ches.buttoncounterapp.model.githubusers.GithubRepository
 import com.a_ches.buttoncounterapp.model.githubusers.GithubUser
 
-class RoomGithubRepositoryCache (private val db: AppDataBase) : IRoomGithubRepositoryCache {
+class RoomGithubRepositoryCache(private val db: AppDataBase) : IRoomGithubRepositoryCache {
     override fun save(user: GithubUser, repositories: List<GithubRepository>) {
 
         val roomUser = user.login?.let {

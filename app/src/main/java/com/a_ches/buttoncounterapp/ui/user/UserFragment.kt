@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.a_ches.buttoncounterapp.*
 import com.a_ches.buttoncounterapp.databinding.FragmentUserBinding
 import com.a_ches.buttoncounterapp.model.AndroidNetworkStatus
-import com.a_ches.buttoncounterapp.model.githubusers.ApiHolder
 import com.a_ches.buttoncounterapp.model.githubusers.GithubRepositoriesRepo
 import com.a_ches.buttoncounterapp.model.githubusers.GithubUser
 import com.a_ches.buttoncounterapp.model.room.AppDataBase
@@ -28,15 +27,7 @@ class UserFragment : MvpAppCompatFragment(), IUserView, IBackButtonListener {
     private val presenter by moxyPresenter {
         UserPresenter(
             requireNotNull(arguments?.getParcelable(KEY_ARG_USER)),
-            AndroidSchedulers.mainThread(),
-            GithubRepositoriesRepo(
-                ApiHolder.api,
-                AndroidNetworkStatus(requireContext()),
-                RoomGithubRepositoryCache(AppDataBase.getDatabase(requireContext()))
-            ),
-            App.instance.router,
-            AndroidScreens()
-        )
+        ).apply { App.instance.appComponent.inject(this) }
     }
 
     private var binding: FragmentUserBinding? = null

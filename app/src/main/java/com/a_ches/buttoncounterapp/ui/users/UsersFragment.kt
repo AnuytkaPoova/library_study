@@ -12,7 +12,6 @@ import com.a_ches.buttoncounterapp.App
 import com.a_ches.buttoncounterapp.R
 import com.a_ches.buttoncounterapp.databinding.FragmentUsersBinding
 import com.a_ches.buttoncounterapp.model.AndroidNetworkStatus
-import com.a_ches.buttoncounterapp.model.githubusers.ApiHolder
 import com.a_ches.buttoncounterapp.model.githubusers.GithubUsersRepo
 import com.a_ches.buttoncounterapp.model.room.AppDataBase
 import com.a_ches.buttoncounterapp.model.room.RoomGithubUsersCache
@@ -21,7 +20,6 @@ import com.a_ches.buttoncounterapp.presenter.users.UsersPresenter
 import com.a_ches.buttoncounterapp.ui.AndroidScreens
 import com.a_ches.buttoncounterapp.ui.GlideImageLoader
 import com.a_ches.buttoncounterapp.ui.IBackButtonListener
-import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -32,16 +30,7 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
     }
 
     val presenter: UsersPresenter by moxyPresenter {
-        UsersPresenter(
-            AndroidSchedulers.mainThread(),
-            GithubUsersRepo(
-                ApiHolder.api,
-                AndroidNetworkStatus(requireContext()),
-                RoomGithubUsersCache(AppDataBase.getDatabase(requireContext()))
-            ),
-            App.instance.router,
-            AndroidScreens()
-        )
+        UsersPresenter().apply { App.instance.appComponent.inject(this) }
     }
     private val adapter: UsersRVAdapter by lazy {
         UsersRVAdapter(presenter.usersListPresenter, GlideImageLoader())

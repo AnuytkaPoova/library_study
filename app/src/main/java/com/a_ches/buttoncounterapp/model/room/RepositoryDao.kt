@@ -41,5 +41,4 @@ interface RepositoryDao {
 
     @Query("SELECT * FROM repositories WHERE user_UID = :userUid")
     fun findForUser(userUid: String): List<RoomGithubRepository>
-
 }

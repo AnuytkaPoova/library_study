@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
 object ImageConvertor : IImageConvertor {
+
     const val QUALITY_IMAGE_COMPRESSION = 100
 
     override fun convertToPng(bufferData: ByteArray): Single<ByteArray> =
