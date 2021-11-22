@@ -16,7 +16,6 @@ import javax.inject.Singleton
 @Module
 class ApiModule {
 
-
     @Singleton
     @Provides
     fun gson(): Gson = GsonBuilder()

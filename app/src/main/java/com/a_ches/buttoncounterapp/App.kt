@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import com.a_ches.buttoncounterapp.di.DaggerAppComponent
 
 class App : Application() {
+
     companion object {
         lateinit var instance: App
     }
